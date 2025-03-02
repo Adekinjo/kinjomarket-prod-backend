@@ -41,7 +41,7 @@ jobs:
 
           script: |
             cd Beauthrist-Backend/Beauthrist-Backend
-            git pull "https://$GIT_USER:$GIT_TOKEN@github.com/$GIT_USER/kinjomarket-prod-backend.git
+            git pull https://$GIT_USER:$GIT_TOKEN@github.com/$GIT_USER/kinjomarket-prod-backend.git
             mvn clean package 
             sudo systemctl restart kinjomarket.service
       
