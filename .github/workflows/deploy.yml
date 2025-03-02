@@ -27,35 +27,21 @@ jobs:
     runs-on: ubuntu-latest
     needs: test_new_merge_changes
     steps:
-      - name: Install dependencies
-        run: |
-          sudo apt update
-          sudo apt install sshpass -y 
       - name:  Ssh into prod server 
-        env:
-          SERVER_USER: ${{ secrets.SERVER_USER }}
-          SERVER_HOST: ${{ secrets.SERVER_HOST }}
-          SERVER_PASS: ${{ secrets.KINJO_BACKEND_SSH_PASS }}
-
-        run: |
-          sshpass -p "$SERVER_PASS" $SERVER_USER@$SERVER_HOST
-
-      - name: Navigate Directory
-        run: |
-          cd Beauthrist-Backend/Beauthrist-Backend
-
-      - name: Pull New Changes
         env:
           GIT_USER:  ${{ secrets.GIT_USER }}
           GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
-        run: |
-          git pull "https://$GIT_USER:$GIT_TOKEN@github.com/$GIT_USER/kinjomarket-prod-backend.git
+        uses: appleboy/ssh-action@v1.2.1
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.KINJO_BACKEND_SSH_PASS }}
+          port: ${{ secrets.PORT }}
+          envs: GIT_USER,GIT_TOKEN
 
-      - name: Build The Jar file
-        run: |
-          mvn clean package 
-
-      - name: Deploy to live 
-        run: |
-          sudo systemctl restart kinjomarket.service
+          script: |
+            cd Beauthrist-Backend/Beauthrist-Backend
+            git pull "https://$GIT_USER:$GIT_TOKEN@github.com/$GIT_USER/kinjomarket-prod-backend.git
+            mvn clean package 
+            sudo systemctl restart kinjomarket.service
       
