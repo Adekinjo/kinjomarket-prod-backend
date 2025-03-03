@@ -252,7 +252,7 @@ public class UserServiceImpl implements UserService {
         passwordResetTokenRepo.save(resetToken);
 
         // Send the reset link to the user's email
-        String resetLink = "http://localhost:5173/reset-password?token=" + resetToken.getToken();
+        String resetLink = "https://www.kinjomarket.com/reset-password?token=" + resetToken.getToken();
         emailService.sendEmail(
                 user.getEmail(),
                 "Password Reset Request",
