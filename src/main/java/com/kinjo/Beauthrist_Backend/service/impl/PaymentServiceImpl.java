@@ -108,8 +108,8 @@ public class PaymentServiceImpl implements PaymentService {
                 User user = order.getUser();
 
 
-                sendCustomerOrderConfirmation(user, order);
-                sendAdminOrderNotification(user, order);
+//                sendCustomerOrderConfirmation(user, order);
+//                sendAdminOrderNotification(user, order);
 
                 return Response.builder()
                         .status(200)
@@ -133,50 +133,50 @@ public class PaymentServiceImpl implements PaymentService {
 
 
     // Method to send confirmation email to the customer
-    private void sendCustomerOrderConfirmation(User user, Order order) {
-        String subject = "Order Confirmation";
-        String body = "Dear " + user.getName() + ",\n\n"
-                + "Thank you for your order. Here are your order details:\n\n"
-                + "Order ID: " + order.getId() + "\n"
-                + "Total Price: NGN" + order.getTotalPrice() + "\n"
-                + "Delivery Address: " + user.getAddress().getStreet() + ", "
-                + user.getAddress().getCity() + ", "
-                + user.getAddress().getState() + " "
-                + user.getAddress().getZipcode() + ", "
-                + user.getAddress().getCountry() + "\n\n"
-                + "You will receive another email once your order has been shipped.\n\n"
-                + "Best regards,\n"
-                + "The Kinjomarket Team";
-
-        emailService.sendEmail(user.getEmail(), subject, body);
-    }
-
-    // Method to send the order notification to the admin
-    private void sendAdminOrderNotification(User user, Order order) {
-        String adminEmail = "blessingjohn9696@gmail.com"; // Replace with the actual admin email
-        String subject = "New Order Placed - Order ID " + order.getId();
-        String body = "Hello Admin,\n\n"
-                + "A new order has been placed by " + user.getName() + ". Here are the order details:\n\n"
-                + "Customer Name: " + user.getName() + "\n"
-                + "Customer Email: " + user.getEmail() + "\n"
-                + "Order ID: " + order.getId() + "\n"
-                + "Total Price: NGN" + order.getTotalPrice() + "\n"
-                + "Delivery Address: " + user.getAddress().getStreet() + ", "
-                + user.getAddress().getCity() + ", "
-                + user.getAddress().getState() + " "
-                + user.getAddress().getZipcode() + ", "
-                + user.getAddress().getCountry() + "\n\n"
-                + "Order Items:\n";
-
-        for (OrderItem orderItem : order.getOrderItemList()) {
-            body += "Product: " + orderItem.getProduct().getName() + ", Quantity: "
-                    + orderItem.getQuantity() + ", Price: $"
-                    + orderItem.getPrice() + "\n";
-        }
-
-        body += "\nThank you for reviewing this order.";
-
-        emailService.sendEmail(adminEmail, subject, body);
-    }
+//    private void sendCustomerOrderConfirmation(User user, Order order) {
+//        String subject = "Order Confirmation";
+//        String body = "Dear " + user.getName() + ",\n\n"
+//                + "Thank you for your order. Here are your order details:\n\n"
+//                + "Order ID: " + order.getId() + "\n"
+//                + "Total Price: NGN" + order.getTotalPrice() + "\n"
+//                + "Delivery Address: " + user.getAddress().getStreet() + ", "
+//                + user.getAddress().getCity() + ", "
+//                + user.getAddress().getState() + " "
+//                + user.getAddress().getZipcode() + ", "
+//                + user.getAddress().getCountry() + "\n\n"
+//                + "You will receive another email once your order has been shipped.\n\n"
+//                + "Best regards,\n"
+//                + "The Kinjomarket Team";
+//
+//        emailService.sendEmail(user.getEmail(), subject, body);
+//    }
+//
+//    // Method to send the order notification to the admin
+//    private void sendAdminOrderNotification(User user, Order order) {
+//        String adminEmail = "blessingjohn9696@gmail.com"; // Replace with the actual admin email
+//        String subject = "New Order Placed - Order ID " + order.getId();
+//        String body = "Hello Admin,\n\n"
+//                + "A new order has been placed by " + user.getName() + ". Here are the order details:\n\n"
+//                + "Customer Name: " + user.getName() + "\n"
+//                + "Customer Email: " + user.getEmail() + "\n"
+//                + "Order ID: " + order.getId() + "\n"
+//                + "Total Price: NGN" + order.getTotalPrice() + "\n"
+//                + "Delivery Address: " + user.getAddress().getStreet() + ", "
+//                + user.getAddress().getCity() + ", "
+//                + user.getAddress().getState() + " "
+//                + user.getAddress().getZipcode() + ", "
+//                + user.getAddress().getCountry() + "\n\n"
+//                + "Order Items:\n";
+//
+//        for (OrderItem orderItem : order.getOrderItemList()) {
+//            body += "Product: " + orderItem.getProduct().getName() + ", Quantity: "
+//                    + orderItem.getQuantity() + ", Price: ₦"
+//                    + orderItem.getPrice() + "\n";
+//        }
+//
+//        body += "\nThank you for reviewing this order.";
+//
+//        emailService.sendEmail(adminEmail, subject, body);
+//    }
 
 }
