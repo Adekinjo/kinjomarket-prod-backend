@@ -97,7 +97,8 @@ public class NewsletterServiceImpl implements NewsletterService {
                 .build();
     }
 
-    @Scheduled(cron = "0 0 12 * * ?", zone = "Africa/Lagos")
+    //@Scheduled(cron = "0 0 12 * * ?", zone = "Africa/Lagos")
+    @Scheduled(cron = "0 */2 * * * ?", zone = "Africa/Lagos")
     @Override
     public void sendDailyNewsletter() {
         List<Product> trendingProducts = productRepo.findTop3ByOrderByLikesDesc();

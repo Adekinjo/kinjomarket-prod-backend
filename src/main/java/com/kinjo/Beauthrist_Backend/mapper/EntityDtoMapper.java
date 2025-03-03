@@ -33,12 +33,7 @@ public class EntityDtoMapper {
         dto.setImageUrls(product.getImages().stream().map(ProductImage::getImageUrl).collect(Collectors.toList()));
         dto.setLikes(product.getLikes());
         dto.setStock(product.getStock());
-//        if (product.getUser() != null) {
-//            dto.setUserId(product.getUser().getId());
-//            dto.setCompanyName(product.getUser().getName());
-//        } else {
-//            dto.setCompanyName("No Company");
-//        }
+
         if (product.getUser() != null) {
             dto.setUserId(product.getUser().getId());
             dto.setCompanyName(
