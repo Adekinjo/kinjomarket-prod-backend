@@ -149,3 +149,4 @@ public class NewsletterServiceImpl implements NewsletterService {
         javaMailSender.send(message);
     }
 }
+
