@@ -11,3 +11,4 @@ public interface NewsletterService {
     Response getAllSubscribers();
     void sendDailyNewsletter();
 }
+

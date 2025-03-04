@@ -20,7 +20,7 @@ public class EmailService {
         message.setTo(to);
         message.setSubject(subject);
         message.setText(body);
-        message.setFrom("no-reply@beauthrist.com"); // Your no-reply email address
+        message.setFrom("no-reply@kinjomarket.com");
         javaMailSender.send(message);
     }
 

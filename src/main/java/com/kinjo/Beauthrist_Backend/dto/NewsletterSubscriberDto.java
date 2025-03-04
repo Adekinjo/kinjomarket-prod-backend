@@ -18,3 +18,4 @@ public class NewsletterSubscriberDto {
     private Boolean subscribed;
     private LocalDateTime createdAt;
 }
+
